@@ -1,24 +1,17 @@
 <?php
 
 /**
- * production: false,
-  firebase: {
-    apiKey: process.env.API_KEY,
-    authDomain: process.env.AUTH_DOMAIN,
-    databaseURL: process.env.DATABASE_URL,
-    projectId: process.env.PROJECT_ID,
-    storageBucket: process.env.STORAGE_BUCKET,
-    messagingSenderId: process.env.MESSAGING_SENDER_ID,
-    appId: process.env.APP_ID
-  }
+ * Class to format json.
  */
-
 class JsonFormatter
 {
   static $result = '';
   static $separator = '';
 
-  public static function iterateArray($data) : string
+  /**
+   * Return data as an array.
+   */
+  public static function iterateArray($data)
   {
     static::$result .= '[';
     static::$separator = '';
@@ -47,6 +40,9 @@ class JsonFormatter
     return static::$result;
   }
 
+  /**
+   * Iterate.
+   */
   public static function iterate($data)
   {
     if (is_array($data)) {
@@ -57,6 +53,10 @@ class JsonFormatter
     return static::$result;
   }
 
+
+  /**
+   * Used to return json object.
+   */
   public static function iterateObject($data)
   {
     static::$result .= '{';
@@ -75,7 +75,7 @@ class JsonFormatter
             static::iterate($val, true);
             static::$result .= ', ';
         } elseif (is_array($val)) {
-            static::iterateObject($val);
+            static::iterateArray($val);
             static::$result .= ', ';
         } else {
             static::$result .= $val;
@@ -88,8 +88,9 @@ class JsonFormatter
 
 }
 
+// Prepare env files.
 $data['production'] = true;
-$data['firebase'] = [
+$data['firebase'] = (object)[
   'apiKey' => getenv('API_KEY'),
   'authDomain'=> getenv('AUTH_DOMAIN'),
   'databaseURL' => getenv('DATABASE_URL'),
@@ -99,8 +100,9 @@ $data['firebase'] = [
   'appId' => getenv('APP_ID')
 ];
 
+// Format object to json.
 $data_json = "export const environment = " . JsonFormatter::iterateObject($data);
-
+// Create or update file.
 $file = fopen('src/environments/environment.prod.ts', 'w+');
 fwrite($file, $data_json);
 $fclose;
