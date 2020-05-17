@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "chatapp-419dd": {
+      "hosting": {
+        "ChatApp": [
+          "chatapp-419dd"
+        ]
+      }
+    }
+  }
+}

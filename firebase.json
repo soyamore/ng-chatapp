@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "ChatApp",
+      "public": "dist/chatapp",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
