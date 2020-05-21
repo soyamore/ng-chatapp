@@ -16,12 +16,16 @@ export class ChatComponent implements OnInit {
     message: '',
     created_at: '',
   };
+  name: string;
 
   constructor(private chatService: ChatsService, private authService: AuthService) {
   }
 
   ngOnInit(): void {
     this.chatService.getChats().subscribe(res => this.chats = res);
+    this.authService.userData.subscribe(res => {
+      this.name = res.displayName
+    });
   }
 
   addChat() {

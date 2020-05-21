@@ -13,7 +13,7 @@
       </li>
     </ul>
 
-    <div class="form-group mt-5">
+    <div class="form-group mt-5" *ngIf="(name)">
       <input (keyup.enter)="addChat()" [(ngModel)]="chat.message" type="text" class="form-input" style="min-width: 100%" placeholder="Lorem ipsum..." required>
       <p class="text-muted"><em>Type enter to send your message</em></p>
     </div>
