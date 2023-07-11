@@ -39,7 +39,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
-    "convict": "^6.0.0",
+    "convict": "^6.2.4",
     "dotenv": "^8.2.0",
     "firebase-tools": "^8.0.0",
     "fuzzy": "^0.1.3",
